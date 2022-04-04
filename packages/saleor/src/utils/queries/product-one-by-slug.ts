@@ -1,43 +1,38 @@
 export const ProductOneBySlug = /* GraphQL */ `
-  query ProductOneBySlug($slug: String!, $channel: String = "default-channel") {
-    product(slug: $slug, channel: $channel) {
+query ProductOneBySlug($slug: String!) {
+  products(
+    filter: {
+      url_key: {
+        eq: $slug
+      }
+    }
+  ) {
+    items {
+      uid
       id
-      slug
       name
-      description
-      pricing {
-        priceRange {
-          start {
-            net {
-              amount
-            }
+      sku
+      url_key
+      stock_status
+      review_count
+      rating_summary
+      feature_bullets
+      price {
+        regularPrice {
+          amount {
+            currency
+            value
           }
         }
       }
-      variants {
-        id
-        name
-        attributes {
-          attribute {
-            name
-          }
-          values {
-            name
-          }
-        }
-        pricing {
-          price {
-            net {
-              amount
-              currency
-            }
-          }
-        }
-      }
-      media {
+      media_gallery {
         url
-        alt
+        label
+      }
+      description {
+        html
       }
     }
   }
+}  
 `

@@ -36,9 +36,26 @@ export default function getProductOperation({ commerce }: OperationContext<Provi
         }),
       }
     )
-
+    const productDetails = data?.products?.items[0];
+    const productMedia = data?.products?.items[0]?.media_gallery;  
+    const product = 
+      {
+        id: productDetails?.id,
+        name: productDetails?.name,
+        slug: productDetails?.url_key,
+        path: `/${productDetails?.url_key}`,
+        description: productDetails?.description?.html,
+        featureBullets: productDetails?.feature_bullets,
+        reviewCount: productDetails?.review_count,
+        ratingSummary: productDetails?.rating_summary,
+        price: { value: productDetails?.price?.regularPrice?.amount?.value, currencyCode: productDetails?.price?.regularPrice?.amount?.currency },
+        images:  productMedia,
+        vendor: '',
+        variants: [],
+        options: []
+      }
     return {
-      product: data?.product ? normalizeProduct(data.product) : null,
+      product: product ? product : null,
     }
   }
 

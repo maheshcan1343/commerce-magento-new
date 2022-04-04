@@ -7447,6 +7447,9 @@ export type Product = Node &
     seoDescription?: Maybe<Scalars['String']>
     name: Scalars['String']
     description?: Maybe<Scalars['JSONString']>
+    featureBullets?: Maybe<Scalars['JSONString']>
+    reviewCount?: Maybe<Scalars['Int']>
+    ratingSummary?: Maybe<Scalars['Int']>
     productType: ProductType
     slug: Scalars['String']
     category?: Maybe<Category>
@@ -7834,6 +7837,7 @@ export type ProductMedia = Node & {
   id: Scalars['ID']
   sortOrder?: Maybe<Scalars['Int']>
   alt: Scalars['String']
+  label: Scalars['String']
   type: ProductMediaType
   oembedData: Scalars['JSONString']
   /** The URL of the media. */

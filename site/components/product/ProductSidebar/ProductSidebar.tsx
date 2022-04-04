@@ -9,7 +9,7 @@ import {
   selectDefaultOptionFromProduct,
   SelectedOptions,
 } from '../helpers'
-
+import usePrice from '@framework/product/use-price'
 interface ProductSidebarProps {
   product: Product
   className?: string
@@ -39,7 +39,11 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       setLoading(false)
     }
   }
-
+  const { price } = usePrice({
+    amount: product.price.value,
+    baseAmount: product.price.retailPrice,
+    currencyCode: product.price.currencyCode!,
+  })
   return (
     <div className={className}>
       <ProductOptions
@@ -47,13 +51,13 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
       />
-      <Text
-        className="pb-4 break-words w-full max-w-xl"
-        html={product.descriptionHtml || product.description}
-      />
+      <p>{product.name}</p>
+      <p>{`${price}`}</p>
       <div className="flex flex-row justify-between items-center">
-        <Rating value={4} />
-        <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div>
+        <Rating value={product.ratingSummary / 5} />
+        <div className="text-accent-6 pr-1 font-medium text-sm">
+        Overall score: {product.ratingSummary / 5} / 5 ({product.reviewCount} reviews)
+          </div>
       </div>
       <div>
         {process.env.COMMERCE_CART_ENABLED && (
@@ -72,14 +76,26 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         )}
       </div>
       <div className="mt-6">
-        <Collapse title="Care">
-          This is a limited edition production run. Printing starts when the
-          drop ends.
+      <Collapse title="DESCRIPTION">
+          <Text
+            className="pb-4 break-words w-full max-w-xl"
+            html={product.description || ''}
+          />
         </Collapse>
-        <Collapse title="Details">
+        <Collapse title="FEATURES">
+        <Text
+            className="pb-4 break-words w-full max-w-xl"
+            html={product.featureBullets || ''}
+          />
+        </Collapse>
+        <Collapse title="SPECS">
           This is a limited edition production run. Printing starts when the
           drop ends. Reminder: Bad Boys For Life. Shipping may take 10+ days due
           to COVID-19.
+        </Collapse>
+        <Collapse title="REVIEWS">
+          This is a limited edition production run. Printing starts when the
+          drop ends.
         </Collapse>
       </div>
     </div>

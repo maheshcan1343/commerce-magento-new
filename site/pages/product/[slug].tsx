@@ -49,8 +49,11 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths({ locales }: GetStaticPathsContext) {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
   const { products } = await commerce.getAllProductPaths()
-
   return {
     paths: locales
       ? locales.reduce<string[]>((arr, locale) => {

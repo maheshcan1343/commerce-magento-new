@@ -15,7 +15,7 @@ module.exports = withCommerceConfig({
     defaultLocale: 'en-US',
   },
   images: {
-    domains: ['www.mowdirect.co.uk'],
+    domains: ['www.mowdirect.co.uk','bndmd2.test','backend.chipperfield.co.uk'],
   },
   rewrites() {
     return [

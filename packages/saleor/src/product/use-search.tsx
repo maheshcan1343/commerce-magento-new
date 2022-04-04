@@ -29,11 +29,81 @@ export const handler: SWRHook<SearchProductsHook> = {
   async fetcher({ input, options, fetch }) {
     const { categoryId, brandId } = input
 
-    const data = await fetch({
+    /*const data = await fetch({
       query: categoryId ? query.CollectionOne : options.query,
       method: options?.method,
       variables: getSearchVariables(input),
-    })
+    })*/
+   const products = [
+      {
+        id: 'UHJvZHVjdDoxMjU=',
+        name: 'Saleor Beanie Mahesh',
+        description:
+          '{"time": 1632846110139, "blocks": [{"data": {"text": "Best seller!", "level": 1}, "type": "header"}, {"data": {"text": "Keeps your head <b>warm</b>, while lookin\' <b>cool</b>. <i>How awesome is that?</i>"}, "type": "paragraph"}], "version": "2.20.0"}',
+        slug: 'saleor-beanie',
+        path: '/polo-shirt',
+        price: {
+          value: 55,
+          currencyCode: 'USD',
+        },
+        images: [
+          {
+            url: 'https://backend.chipperfield.co.uk/media/catalog/product/cache/96a68da70afabf55598d07a0a79bb44a/1/5/1530m_mountfield_1530m.png',
+            alt: 'name',
+          },
+        ],
+        variants: [],
+        vendor: '',
+        options: [],
+      },
+      {
+        id: 'UHJvZHVjdDoxMjU=',
+        name: 'White Plimsolls',
+        description:
+          '{"time": 1632846110139, "blocks": [{"data": {"text": "Best seller!", "level": 1}, "type": "header"}, {"data": {"text": "Keeps your head <b>warm</b>, while lookin\' <b>cool</b>. <i>How awesome is that?</i>"}, "type": "paragraph"}], "version": "2.20.0"}',
+        slug: 'saleor-beanie',
+        path: '/polo-migrate',
+        price: {
+          value: 55,
+          currencyCode: 'USD',
+        },
+        images: [
+          {
+            url: 'https://backend.chipperfield.co.uk/media/catalog/product/cache/96a68da70afabf55598d07a0a79bb44a/f/t/ftde1200r-uk-tondeuse-tondeuse-rouleau-electrique.jpg',
+            alt: 'name',
+          },
+        ],
+        variants: [],
+        vendor: '',
+        options: [],
+      },
+      {
+        id: 'UHJvZHVjdDoxMjU=',
+        name: 'White Plimsolls 22',
+        description:
+          '{"time": 1632846110139, "blocks": [{"data": {"text": "Best seller!", "level": 1}, "type": "header"}, {"data": {"text": "Keeps your head <b>warm</b>, while lookin\' <b>cool</b>. <i>How awesome is that?</i>"}, "type": "paragraph"}], "version": "2.20.0"}',
+        slug: 'saleor-beanie',
+        path: '/polo-migratesss',
+        price: {
+          value: 55,
+          currencyCode: 'USD',
+        },
+        images: [
+          {
+            url: 'https://backend.chipperfield.co.uk/media/catalog/product/cache/96a68da70afabf55598d07a0a79bb44a/a/t/at6102hwa_2t1740404a20_full01.jpg',
+            alt: 'name',
+          },
+        ],
+        variants: [],
+        vendor: '',
+        options: [],
+      },
+    ]
+
+    return {
+      products: products,
+      found: !!products.length,
+    }
 
     let edges
 

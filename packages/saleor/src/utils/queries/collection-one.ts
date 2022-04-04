@@ -1,13 +1,27 @@
 import * as fragment from '../fragments'
 
 export const CollectionOne = /* GraphQL */ `
-  query getProductsFromCollection($categoryId: ID!, $first: Int = 100, $channel: String = "default-channel") {
-    collection(id: $categoryId, channel: $channel) {
-      id
-      products(first: $first) {
-        ...ProductConnection
+  query getProductsFromCollection {
+    categoryList(filters: { ids: { eq: "4252" } }) {
+      products {
+        items {
+          id
+          name
+          sku
+          url_key
+          image {
+            url
+          }
+          price {
+            regularPrice {
+              amount {
+                currency
+                value
+              }
+            }
+          }
+        }
       }
     }
   }
-  ${fragment.ProductConnection}
 `
