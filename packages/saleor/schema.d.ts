@@ -7490,6 +7490,9 @@ export type Product = Node &
     variants?: Maybe<Array<Maybe<ProductVariant>>>
     /** List of media for the product. */
     media?: Maybe<Array<ProductMedia>>
+    /** List of media for the product. */
+    relatedProducts?: Maybe<Array<ProductRelated>>
+    
     /**
      * List of images for the product.
      * @deprecated Will be removed in Saleor 4.0. Use the `media` field instead.
@@ -7842,6 +7845,18 @@ export type ProductMedia = Node & {
   oembedData: Scalars['JSONString']
   /** The URL of the media. */
   url: Scalars['String']
+}
+
+/** Represents a product media. */
+export type ProductRelated = Node & {
+  __typename?: 'ProductRelated'
+  id: Scalars['ID']
+  name: Scalars['String']
+  description?: Maybe<Scalars['JSONString']>
+  slug: Scalars['String']
+  pricing?: Maybe<ProductPricingInfo>
+  images?: Maybe<Array<Maybe<ProductImage>>>
+  variants?: Maybe<Array<Maybe<ProductVariant>>>
 }
 
 /** Represents a product media. */

@@ -31,7 +31,7 @@ export async function getStaticProps({
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
   const { product } = await productPromise
-  const { products: relatedProducts } = await allProductsPromise
+  const { relatedProducts } = product
 
   if (!product) {
     throw new Error(`Product with slug '${params!.slug}' not found`)

@@ -73,6 +73,8 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                 key={p.path}
                 className="animated fadeIn bg-accent-0 border border-accent-2"
               >
+                <p>{p.name}</p>
+                <p>£{`${p.price.value}`}</p>
                 <ProductCard
                   noNameTag
                   product={p}

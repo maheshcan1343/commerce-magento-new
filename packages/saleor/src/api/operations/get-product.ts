@@ -37,7 +37,20 @@ export default function getProductOperation({ commerce }: OperationContext<Provi
       }
     )
     const productDetails = data?.products?.items[0];
-    const productMedia = data?.products?.items[0]?.media_gallery;  
+    const productMedia = data?.products?.items[0]?.media_gallery;
+    const realtedProducts = data?.products?.items[0]?.related_products
+        .map((loopProduct: any, ) => ({
+          id: loopProduct.id,
+          name: loopProduct.name,
+          description: loopProduct.meta_description,
+          path: `/${loopProduct.url_key}`,
+          slug: loopProduct.url_key,
+          price: { value: loopProduct?.price?.regularPrice?.amount?.value, currencyCode: loopProduct?.price?.regularPrice?.amount?.currency },
+          images:  [{ url: loopProduct?.image?.url , alt: loopProduct.name }],
+          vendor: '',
+          variants: [],
+          options: []
+      }))
     const product = 
       {
         id: productDetails?.id,
@@ -49,7 +62,8 @@ export default function getProductOperation({ commerce }: OperationContext<Provi
         reviewCount: productDetails?.review_count,
         ratingSummary: productDetails?.rating_summary,
         price: { value: productDetails?.price?.regularPrice?.amount?.value, currencyCode: productDetails?.price?.regularPrice?.amount?.currency },
-        images:  productMedia,
+        images: productMedia,
+        relatedProducts : realtedProducts,
         vendor: '',
         variants: [],
         options: []

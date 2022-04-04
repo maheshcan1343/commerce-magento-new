@@ -32,6 +32,25 @@ query ProductOneBySlug($slug: String!) {
       description {
         html
       }
+      related_products {
+        id
+        name
+        sku
+        url_key
+        meta_description
+        price {
+          regularPrice {
+            amount {
+              currency
+              value
+            }
+          }
+        }
+        image
+        {
+          url
+        }
+      }
     }
   }
 }  
