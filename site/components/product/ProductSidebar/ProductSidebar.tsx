@@ -60,7 +60,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className, productAt
        <p>{product.name}</p> 
        <p>{`${price}`}</p> 
       {productAttirbute?.getProductCustomAttributes?.others
-       .filter( (loopOther: any)=> defaultBulletsAttribute.indexOf(loopOther.code) > -1 )
+      .filter( (loopOther: any)=> defaultBulletsAttribute.indexOf(loopOther.code) > -1 )
       .map((loopOther: any) => (
         <div className="text-accent-6 pr-1 font-medium text-sm">
           <p> <b> * </b>{loopOther.value}</p>
@@ -103,7 +103,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className, productAt
           />
         </Collapse>
         <Collapse title="SPECS">
-        {productAttirbute?.getProductCustomAttributes?.specification.map((loopSpec: any) => (
+        {productAttirbute?.getProductCustomAttributes?.specification?.map((loopSpec: any) => (
             <p>{loopSpec.label} : {loopSpec.value}</p>
         ))}
         </Collapse>
