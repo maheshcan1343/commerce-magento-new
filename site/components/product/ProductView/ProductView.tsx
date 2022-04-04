@@ -13,9 +13,10 @@ import ProductTag from '../ProductTag'
 interface ProductViewProps {
   product: Product
   relatedProducts: Product[]
+  productAttirbute: any
 }
 
-const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
+const ProductView: FC<ProductViewProps> = ({ product, relatedProducts, productAttirbute }) => {
   const { price } = usePrice({
     amount: product.price.value,
     baseAmount: product.price.retailPrice,
@@ -61,6 +62,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
           <ProductSidebar
             key={product.id}
             product={product}
+            productAttirbute={productAttirbute}
             className={s.sidebar}
           />
         </div>

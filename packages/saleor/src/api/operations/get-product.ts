@@ -42,6 +42,7 @@ export default function getProductOperation({ commerce }: OperationContext<Provi
         .map((loopProduct: any, ) => ({
           id: loopProduct.id,
           name: loopProduct.name,
+          sku: loopProduct.sku,
           description: loopProduct.meta_description,
           path: `/${loopProduct.url_key}`,
           slug: loopProduct.url_key,
@@ -55,6 +56,7 @@ export default function getProductOperation({ commerce }: OperationContext<Provi
       {
         id: productDetails?.id,
         name: productDetails?.name,
+        sku: productDetails.sku,
         slug: productDetails?.url_key,
         path: `/${productDetails?.url_key}`,
         description: productDetails?.description?.html,

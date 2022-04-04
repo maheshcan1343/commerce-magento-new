@@ -69,6 +69,7 @@ export function normalizeProduct(productNode: SaleorProduct): Product {
   const product = {
     id,
     name,
+    sku: '',
     vendor: '',
     featureBullets: '',
     reviewCount: '',

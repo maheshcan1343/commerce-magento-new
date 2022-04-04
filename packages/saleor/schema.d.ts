@@ -7446,6 +7446,7 @@ export type Product = Node &
     seoTitle?: Maybe<Scalars['String']>
     seoDescription?: Maybe<Scalars['String']>
     name: Scalars['String']
+    sku?: Scalars['String']
     description?: Maybe<Scalars['JSONString']>
     featureBullets?: Maybe<Scalars['JSONString']>
     reviewCount?: Maybe<Scalars['Int']>

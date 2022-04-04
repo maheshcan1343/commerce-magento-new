@@ -22,17 +22,19 @@ export async function getStaticProps({
     config,
     preview,
   })
-
-  const allProductsPromise = commerce.getAllProducts({
-    variables: { first: 4 },
+  const { product } = await productPromise
+  const { relatedProducts } = product
+  const { sku } = product
+  
+  const allProductsPromise = commerce.getProductAttribute({
+    variables: { slug: sku },
     config,
     preview,
   })
+  const { productAttirbute } = await allProductsPromise
+   
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
-  const { product } = await productPromise
-  const { relatedProducts } = product
-
   if (!product) {
     throw new Error(`Product with slug '${params!.slug}' not found`)
   }
@@ -42,6 +44,7 @@ export async function getStaticProps({
       pages,
       product,
       relatedProducts,
+      productAttirbute,
       categories,
     },
     revalidate: 200,
@@ -71,13 +74,14 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
 export default function Slug({
   product,
   relatedProducts,
+  productAttirbute,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
 
   return router.isFallback ? (
     <h1>Loading...</h1>
   ) : (
-    <ProductView product={product} relatedProducts={relatedProducts} />
+    <ProductView product={product} relatedProducts={relatedProducts} productAttirbute={productAttirbute} />
   )
 }
 

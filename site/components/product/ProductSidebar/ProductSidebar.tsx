@@ -13,9 +13,10 @@ import usePrice from '@framework/product/use-price'
 interface ProductSidebarProps {
   product: Product
   className?: string
+  productAttirbute: any
 }
 
-const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
+const ProductSidebar: FC<ProductSidebarProps> = ({ product, className, productAttirbute }) => {
   const addItem = useAddItem()
   const { openSidebar } = useUI()
   const [loading, setLoading] = useState(false)
@@ -44,6 +45,11 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     baseAmount: product.price.retailPrice,
     currencyCode: product.price.currencyCode!,
   })
+  const defaultBulletsAttribute = [
+    'bullet_one',
+    'bullet_two',
+    'bullet_three',
+  ]
   return (
     <div className={className}>
       <ProductOptions
@@ -51,8 +57,16 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
       />
-      <p>{product.name}</p>
-      <p>{`${price}`}</p>
+       <p>{product.name}</p> 
+       <p>{`${price}`}</p> 
+      {productAttirbute?.getProductCustomAttributes?.others
+       .filter( (loopOther: any)=> defaultBulletsAttribute.indexOf(loopOther.code) > -1 )
+      .map((loopOther: any) => (
+        <div className="text-accent-6 pr-1 font-medium text-sm">
+          <p> <b> * </b>{loopOther.value}</p>
+          </div>
+           
+        ))}
       <div className="flex flex-row justify-between items-center">
         <Rating value={product.ratingSummary / 5} />
         <div className="text-accent-6 pr-1 font-medium text-sm">
@@ -89,9 +103,9 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
           />
         </Collapse>
         <Collapse title="SPECS">
-          This is a limited edition production run. Printing starts when the
-          drop ends. Reminder: Bad Boys For Life. Shipping may take 10+ days due
-          to COVID-19.
+        {productAttirbute?.getProductCustomAttributes?.specification.map((loopSpec: any) => (
+            <p>{loopSpec.label} : {loopSpec.value}</p>
+        ))}
         </Collapse>
         <Collapse title="REVIEWS">
           This is a limited edition production run. Printing starts when the

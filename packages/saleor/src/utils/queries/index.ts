@@ -1,5 +1,6 @@
 export { CollectionMany } from './collection-many'
 export { ProductOneBySlug } from './product-one-by-slug'
+export { productAttributeOneBySlug } from './product-attribute-one-by-slug'
 export { ProductMany } from './product-many'
 export { CollectionOne } from './collection-one'
 export { CheckoutOne } from './checkout-one'
